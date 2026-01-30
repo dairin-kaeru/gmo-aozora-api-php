@@ -145,8 +145,9 @@ class Auth
     public function isValidToken($idToken, $clientSecret, $nonceInstance)
     {
         try {
-            $decodedToken = \Firebase\JWT\JWT::decode($idToken, $clientSecret, array('HS256'));
-            if ($decodedToken['nonce'] === $nonceInstance) {
+            $key = new \Firebase\JWT\Key($clientSecret, 'HS256');
+            $decodedToken = \Firebase\JWT\JWT::decode($idToken, $key);
+            if ($decodedToken->nonce === $nonceInstance) {
                 return true;
             }
         } catch (Exception $e) {
