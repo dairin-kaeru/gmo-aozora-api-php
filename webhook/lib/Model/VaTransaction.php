@@ -31,6 +31,7 @@ namespace Ganb\Webhook\Client\Model;
 
 use \ArrayAccess;
 use \Ganb\Webhook\Client\ObjectSerializer;
+use ReturnTypeWillChange;
 
 /**
  * VaTransaction Class Doc Comment
@@ -874,6 +875,7 @@ class VaTransaction implements ModelInterface, ArrayAccess
      *
      * @return boolean
      */
+    #[ReturnTypeWillChange]
     public function offsetExists($offset)
     {
         return isset($this->container[$offset]);
@@ -886,6 +888,7 @@ class VaTransaction implements ModelInterface, ArrayAccess
      *
      * @return mixed
      */
+    #[ReturnTypeWillChange]
     public function offsetGet($offset)
     {
         return isset($this->container[$offset]) ? $this->container[$offset] : null;
@@ -899,6 +902,7 @@ class VaTransaction implements ModelInterface, ArrayAccess
      *
      * @return void
      */
+    #[ReturnTypeWillChange]
     public function offsetSet($offset, $value)
     {
         if (is_null($offset)) {
@@ -915,6 +919,7 @@ class VaTransaction implements ModelInterface, ArrayAccess
      *
      * @return void
      */
+    #[ReturnTypeWillChange]
     public function offsetUnset($offset)
     {
         unset($this->container[$offset]);
