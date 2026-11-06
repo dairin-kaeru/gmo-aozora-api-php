@@ -147,11 +147,11 @@ class Auth
         try {
             $key = new \Firebase\JWT\Key($clientSecret, 'HS256');
             $decodedToken = \Firebase\JWT\JWT::decode($idToken, $key);
-            if ($decodedToken->nonce === $nonceInstance) {
+            if (isset($decodedToken->nonce) && $decodedToken->nonce === $nonceInstance) {
                 return true;
             }
-        } catch (Exception $e) {
-            //echo $e->getMessage()
+        } catch (\Exception $e) {
+            return false;
         }
         return false;
     }

@@ -14,7 +14,26 @@ https://api.gmo-aozora.com/ganb/developer/
 1.0.0
 
 ## Requirements
-PHP 5.5 and later
+PHP 8.0 and later
+
+### JWT compatibility
+
+JWT 7 requires an HS256 client secret of at least 32 bytes. Confirm the
+bank-issued client secret meets this requirement before upgrading. Short secrets
+are rejected; do not pad or otherwise modify the issued secret.
+
+Run the offline authentication regression tests after installing dependencies:
+
+```sh
+composer test:jwt
+```
+
+The tests cover valid signatures, nonce matching, tampering, expiration,
+future claims, malformed tokens, and rejection of short secrets. They use local
+test keys and do not contact the bank. Validation against the bank's staging
+environment with the actual issued credentials is a separate integration check.
+
+Dependencies are resolved for PHP 8.0 via Composer's `config.platform.php`.
 
 ## Installation
 
